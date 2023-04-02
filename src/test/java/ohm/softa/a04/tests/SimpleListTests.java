@@ -18,11 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SimpleListTests {
 
 	private final Logger logger = LogManager.getLogger();
-	private SimpleList testList;
+	private SimpleList<Integer> testList;
 
 	@BeforeEach
 	void setup(){
-		testList = new SimpleListImpl();
+		testList = new SimpleListImpl<Integer>();
 
 		testList.add(1);
 		testList.add(2);
@@ -50,11 +50,10 @@ public class SimpleListTests {
 	@Test
 	void testFilterAnonymousClass(){
 		logger.info("Testing the filter possibilities by filtering for all elements greater 2");
-		SimpleList result = testList.filter(new SimpleFilter() {
+		SimpleList<Integer> result = testList.filter(new SimpleFilter<Integer>() {
 			@Override
-			public boolean include(Object item) {
-				int current = (int)item;
-				return current > 2;
+			public boolean include(Integer item){
+				return item > 2;
 			}
 		});
 
